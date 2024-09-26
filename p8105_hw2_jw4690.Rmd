@@ -7,7 +7,6 @@ output: github_document
 
 ```{r setup, echo = FALSE, message = FALSE}
 library(tidyverse)
-library(haven)
 ```
 
 ## Problem 1
@@ -20,4 +19,7 @@ NYCSubway_df =
          route5, route6, route7, route8, route9, route10, route11, entry, vending, entrance_type, ada) |>
   mutate(entry = ifelse(entry == "YES", TRUE, FALSE))
 ```
+
+The dataset details NYC subway entrances and exits, including the line, station name, station latitude, station longitude, routes, entrance type, entry, vending, and ADA. Cleaning steps included clean names, selecting needed variables, and converting entry from "YES"/"NO" to TRUE/FALSE. The cleaned dataset has `r nrow(NYCSubway_df)` of rows and  `r ncol(NYCSubway_df)` columns. The data is tidy, with each row representing a unique entrance/exit and each column a distinct variable.
+
 
