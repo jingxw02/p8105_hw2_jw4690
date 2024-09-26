@@ -36,3 +36,11 @@ ADA_compliant = NYCSubway_df |>
 ```
 
 There are `r nrow(ADA_compliant)` stations are ADA compliant.
+
+```{r}
+without_vending = NYCSubway_df |>
+  filter(vending == "NO")
+```
+
+The proportion of station entrances / exits without vending allow entrance is `r mean(as.numeric(pull(without_vending, var = entry, name = NULL)))`.
+
