@@ -7,6 +7,7 @@ output: github_document
 
 ```{r setup, echo = FALSE, message = FALSE}
 library(tidyverse)
+library(haven)
 ```
 
 ## Problem 1
@@ -43,4 +44,15 @@ without_vending = NYCSubway_df |>
 ```
 
 The proportion of station entrances / exits without vending allow entrance is `r mean(as.numeric(pull(without_vending, var = entry, name = NULL)))`.
+
+```{r}
+NYCSubway_df = NYCSubway_df |>
+  mutate(across(route1:route11, as.character))
+
+routes = NYCSubway_df |>
+  pivot_longer(cols = route1:route11,
+               names_to = "route_number",
+               values_to = "route_name") |>
+  filter(!is.na(route_name))
+```
 
