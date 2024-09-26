@@ -56,3 +56,10 @@ routes = NYCSubway_df |>
   filter(!is.na(route_name))
 ```
 
+```{r}
+A_train = routes |>
+  filter(route_name == "A") |>
+  distinct(line, station_name)
+```
+
+`r nrow(A_train)` distinct stations serve the A train.
