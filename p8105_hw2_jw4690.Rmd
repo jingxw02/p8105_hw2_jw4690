@@ -28,3 +28,11 @@ distinct_stations = NYCSubway_df |>
 ```
 
 There are `r nrow(distinct_stations)` distinct stations.
+
+```{r}
+ADA_compliant = NYCSubway_df |>
+  filter(ada == "TRUE") |>
+  distinct(line, station_name)
+```
+
+There are `r nrow(ADA_compliant)` stations are ADA compliant.
