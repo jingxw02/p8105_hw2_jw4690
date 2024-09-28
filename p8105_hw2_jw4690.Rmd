@@ -74,4 +74,12 @@ Of the stations that serve the A train, `r nrow(A_train_ADA)` are ADA compliant.
 
 ## Problem 2
 
+```{r}
+TrashWheel_df = 
+  read_excel("data/202309 Trash Wheel Collection Data.xlsx", sheet = 1) |>
+  janitor::clean_names() |>
+  filter(!is.na(dumpster)) |>
+  mutate(sports_balls = as.integer(round(sports_balls)))
+```
+
 
