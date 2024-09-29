@@ -89,3 +89,13 @@ Professor_Trash_Wheel =
   janitor::clean_names() |>
   filter(!is.na(dumpster))
 ```
+
+
+```{r}
+Gwynnda_df = 
+  read_excel("data/202309 Trash Wheel Collection Data.xlsx", sheet = 4) |>
+  janitor::clean_names() |>
+  filter(!is.na(dumpster))
+```
+
+
