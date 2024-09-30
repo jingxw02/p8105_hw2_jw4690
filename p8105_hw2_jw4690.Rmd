@@ -98,4 +98,14 @@ Gwynnda_df =
   filter(!is.na(dumpster))
 ```
 
+```{r}
+TrashWheel_df = TrashWheel_df |>
+  mutate(source = "MrTrash_Wheel", .before = dumpster)
+
+Professor_Trash_Wheel = Professor_Trash_Wheel |>
+  mutate(source = "Professor_Trash_Wheel", .before = dumpster)
+
+Gwynnda_df = Gwynnda_df |>
+  mutate(source = "Gwynnda", .before = dumpster)
+```
 
