@@ -120,3 +120,18 @@ combined_df = rbind(TrashWheel_df, Professor_Trash_Wheel, Gwynnda_df)
 ```
 
 The combined dataset from Mr. Trash Wheel, Professor Trash Wheel, and Gwynnda Trash Wheel contains r `r nrow(combined_df)` observations. Key variables include source, dumpster, month, year, date, weight in tons, volume in cubic yards, plastic bottles, polystyrene, cigarette butts, glass bottles, plastic bags, wrappers, sports balls, homes powered. The total weight of trash collected by Professor Trash Wheel is `r sum(Professor_Trash_Wheel$weight_tons)`. The total number of cigarette butts collected by Gwynnda in June of 2022 is `r sum((Gwynnda_df %>% filter(month == "June" & year == 2022))$cigarette_butts)`. 
+
+## Problem 3
+
+```{r}
+bakers_df = read_csv("./data/gbb_datasets/gbb_datasets/bakers.csv") |>
+  janitor::clean_names()
+
+bakes_df = read_csv("./data/gbb_datasets/gbb_datasets/bakes.csv") |>
+  janitor::clean_names()
+
+results_df = read_csv("./data/gbb_datasets/gbb_datasets/results.csv", skip = 2) |>
+  janitor::clean_names()
+```
+
+
