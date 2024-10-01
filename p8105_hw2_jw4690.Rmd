@@ -76,7 +76,7 @@ Of the stations that serve the A train, `r nrow(A_train_ADA)` are ADA compliant.
 
 ```{r}
 TrashWheel_df = 
-  read_excel("data/202309 Trash Wheel Collection Data.xlsx", sheet = 1) |>
+  read_excel("data/202409 Trash Wheel Collection Data.xlsx", sheet = 1) |>
   janitor::clean_names() |>
   select_if(~ !all(is.na(.))) |>
   filter(!is.na(dumpster)) |>
@@ -85,15 +85,17 @@ TrashWheel_df =
 
 ```{r}
 Professor_Trash_Wheel = 
-  read_excel("data/202309 Trash Wheel Collection Data.xlsx", sheet = 2) |>
+  read_excel("data/202409 Trash Wheel Collection Data.xlsx", sheet = 2) |>
   janitor::clean_names() |>
   filter(!is.na(dumpster))
+
+Professor_Trash_Wheel <- Professor_Trash_Wheel %>% filter(row_number() <= n()-1)
 ```
 
 
 ```{r}
 Gwynnda_df = 
-  read_excel("data/202309 Trash Wheel Collection Data.xlsx", sheet = 4) |>
+  read_excel("data/202409 Trash Wheel Collection Data.xlsx", sheet = 4) |>
   janitor::clean_names() |>
   filter(!is.na(dumpster))
 ```
@@ -119,7 +121,7 @@ Gwynnda_df = Gwynnda_df |>
 combined_df = rbind(TrashWheel_df, Professor_Trash_Wheel, Gwynnda_df)
 ```
 
-The combined dataset from Mr. Trash Wheel, Professor Trash Wheel, and Gwynnda Trash Wheel contains r `r nrow(combined_df)` observations. Key variables include source, dumpster, month, year, date, weight in tons, volume in cubic yards, plastic bottles, polystyrene, cigarette butts, glass bottles, plastic bags, wrappers, sports balls, homes powered. The total weight of trash collected by Professor Trash Wheel is `r sum(Professor_Trash_Wheel$weight_tons)`. The total number of cigarette butts collected by Gwynnda in June of 2022 is `r sum((Gwynnda_df %>% filter(month == "June" & year == 2022))$cigarette_butts)`. 
+The combined dataset from Mr. Trash Wheel, Professor Trash Wheel, and Gwynnda Trash Wheel contains `r nrow(combined_df)` observations. Key variables include source, dumpster, month, year, date, weight in tons, volume in cubic yards, plastic bottles, polystyrene, cigarette butts, glass bottles, plastic bags, wrappers, sports balls, homes powered. The total weight of trash collected by Professor Trash Wheel is `r sum(Professor_Trash_Wheel$weight_tons)`. The total number of cigarette butts collected by Gwynnda in June of 2022 is `r sum((Gwynnda_df %>% filter(month == "June" & year == 2022))$cigarette_butts)`. 
 
 ## Problem 3
 
@@ -133,5 +135,4 @@ bakes_df = read_csv("./data/gbb_datasets/gbb_datasets/bakes.csv") |>
 results_df = read_csv("./data/gbb_datasets/gbb_datasets/results.csv", skip = 2) |>
   janitor::clean_names()
 ```
-
 
