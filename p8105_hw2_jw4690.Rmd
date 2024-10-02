@@ -179,3 +179,10 @@ viewer_df = read_csv("./data/gbb_datasets/gbb_datasets/viewers.csv") |>
 head(viewer_df, 10)
 ```
 
+```{r}
+avg_view_1 = mean(viewer_df$series_1, na.rm = TRUE)
+
+avg_view_5 = mean(viewer_df$series_5, na.rm = TRUE)
+```
+
+the average viewership in Season 1 is `r avg_view_1` , and `r avg_view_5` in Season 5.
