@@ -156,3 +156,18 @@ write.csv(combined_bake, "./data/gbb_datasets/gbb_datasets/combined_bake.csv", r
 For the data cleaning process, I began by inspecting and cleaning each dataset individually. And I find out the inconsistency in baker names across the datasets. The bakers.csv file listed the full names of bakers, while the other datasets only used first names. This discrepancy prevented the datasets from merging correctly. To address this, I extracted the first names from bakers.csv to align with the format in the other datasets, allowing for a successful merge. After merging the datasets, I noticed that the results column contained numerous missing values. And I decided to remove these rows with missing data in the results section. This step ensured that our final dataset only included relevant and complete information about the bakers' competition results.
 
 The final dataset describe the bakers' demographic information, their performance in signature and showstopper challenges, and their competition outcomes. It now has no missing values in the result-related columns, making it suitable for further analysis of bakers’ performances throughout the competition. 
+
+```{r}
+star_baker_winner = combined_bake |>
+  filter(series >= 5 & series <= 10 & result %in% c("STAR BAKER", "WINNER"))
+
+star_baker_table = star_baker_winner |>
+  select(series, baker, episode, result) |>
+  arrange(series, baker, episode)
+
+print(star_baker_table)
+```
+
+Based on the table,  if a baker winning multiple Star Baker titles across episodes, they tend to become strong contenders for the final win. For instance, in several seasons, contestants who won multiple Star Baker awards went on to win the competition. This pattern suggests some predictability.
+
+However, there are seasons where contestants who performed moderately throughout the competition managed to outperform others in the final episode, leading to surprise winners. In a few cases, Star Bakers from earlier episodes were eliminated in later rounds, adding unpredictability to the show's outcomes.
