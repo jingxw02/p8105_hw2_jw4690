@@ -171,3 +171,11 @@ print(star_baker_table)
 Based on the table,  if a baker winning multiple Star Baker titles across episodes, they tend to become strong contenders for the final win. For instance, in several seasons, contestants who won multiple Star Baker awards went on to win the competition. This pattern suggests some predictability.
 
 However, there are seasons where contestants who performed moderately throughout the competition managed to outperform others in the final episode, leading to surprise winners. In a few cases, Star Bakers from earlier episodes were eliminated in later rounds, adding unpredictability to the show's outcomes.
+
+```{r}
+viewer_df = read_csv("./data/gbb_datasets/gbb_datasets/viewers.csv") |>
+  janitor::clean_names()
+
+head(viewer_df, 10)
+```
+
