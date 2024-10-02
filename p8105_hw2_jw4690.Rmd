@@ -78,7 +78,7 @@ Of the stations that serve the A train, `r nrow(A_train_ADA)` are ADA compliant.
 TrashWheel_df = 
   read_excel("data/202409 Trash Wheel Collection Data.xlsx", sheet = 1) |>
   janitor::clean_names() |>
-  select_if(~ !all(is.na(.))) |>
+  select_if(~ !all(is.na(.)))|>
   filter(!is.na(dumpster)) |>
   mutate(sports_balls = as.integer(round(sports_balls)))
 ```
@@ -140,6 +140,16 @@ results_df = read_csv("./data/gbb_datasets/gbb_datasets/results.csv", skip = 2) 
 colnames(bakers_df)[colnames(bakers_df) == 'baker_name'] <- 'baker'
 bakers_df$baker = sapply(strsplit(bakers_df$baker, " "), `[`, 1)
 ```
+
+```{r}
+# check for completeness and correctness across datasets 
+
+missing_bakers <- anti_join(bakes_df, bakers_df, by = "baker")
+
+missing_results <- anti_join(results_df, bakes_df, by = c("series", "episode", "baker"))
+
+```
+
 
 ```{r}
 combined_bake = merge(bakers_df, bakes_df, all = TRUE)
